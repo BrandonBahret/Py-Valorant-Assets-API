@@ -1,0 +1,46 @@
+[project]
+name = "valorant-assets-api"
+version = "0.1.0"
+description = "Typed pypercache-based wrapper for the public Valorant API."
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["valorant", "api", "wrapper", "typed", "cache"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pypercache>=0.1.9",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+valorant_assets_api = ["py.typed"]
+
+[tool.setuptools.packages.find]
+include = ["valorant_assets_api*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: exercises the live Valorant API and persisted cache hydration",
+]
