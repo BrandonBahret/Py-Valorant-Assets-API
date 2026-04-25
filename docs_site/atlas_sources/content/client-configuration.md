@@ -28,6 +28,6 @@ ValorantAPI(*, cache_path: str | None = DEFAULT_CACHE_PATH, default_expiry: int 
 If you do not pass a session, the client creates one with:
 
 - `Accept: application/json`
-- `User-Agent: valorant-api-wrapper/0.1.0`
+- `User-Agent: valorant-api-wrapper/0.1.1`
 
 Use a custom session when you need shared headers, custom adapters, or request instrumentation beyond the built-in defaults.

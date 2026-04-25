@@ -359,7 +359,7 @@ ValorantAPI(*, cache_path: str | None = DEFAULT_CACHE_PATH, default_expiry: int 
 If you do not pass a session, the client creates one with:
 
 - `Accept: application/json`
-- `User-Agent: valorant-api-wrapper/0.1.0`
+- `User-Agent: valorant-api-wrapper/0.1.1`
 
 Use a custom session when you need shared headers, custom adapters, or request instrumentation beyond the built-in defaults.
 """
@@ -987,7 +987,7 @@ def yaml_block(entries: list[tuple[str, str]]) -> str:
 def render_metadata() -> str:
     return f"""---
 name: valorant-assets-api
-version: 0.1.0
+version: 0.1.1
 tagline: Typed pypercache-based wrapper for the public Valorant API.
 accent: "#ff4655"
 accent_dark: "#ff4655"
