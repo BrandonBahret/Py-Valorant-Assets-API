@@ -2,6 +2,8 @@
 
 Typed Python wrapper for the public [Valorant API](https://dash.valorant-api.com/) built on `pypercache`.
 
+Read the [docs](https://brandonbahret.github.io/Py-Valorant-Assets-API/docs_site/index.html)
+
 ```python
 from valorant_assets_api import ValorantAPI
 
