@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+.agents/
 
 # Virtual environments and local env files
 .env
