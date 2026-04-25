@@ -62,12 +62,12 @@ get_gear(gear_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `description` | `str | None` | - |
-| `descriptions` | `list[str] | None` | - |
-| `details` | `list[GearDetail] | None` | - |
+| `description` | `str \| None` | - |
+| `descriptions` | `list[str] \| None` | - |
+| `details` | `list[GearDetail] \| None` | - |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
-| `shop_data` | `ShopData | None` | `shopData` |
+| `asset_path` | `str \| None` | `assetPath` |
+| `shop_data` | `ShopData \| None` | `shopData` |
 :::
 
 ### `GearDetail`
@@ -76,7 +76,7 @@ get_gear(gear_uuid: str, *, language: LanguageLike = None)
 | Field | Type | API alias |
 |-------|------|-----------|
 | `name` | `str` | - |
-| `value` | `str | None` | - |
+| `value` | `str \| None` | - |
 :::
 
 ### `ShopData`
@@ -84,16 +84,16 @@ get_gear(gear_uuid: str, *, language: LanguageLike = None)
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `cost` | `int | None` | - |
-| `category` | `str | None` | - |
-| `shop_order_priority` | `int | None` | `shopOrderPriority` |
-| `category_text` | `str | None` | `categoryText` |
-| `grid_position` | `ShopGridPosition | None` | `gridPosition` |
-| `can_be_trashed` | `bool | None` | `canBeTrashed` |
+| `cost` | `int \| None` | - |
+| `category` | `str \| None` | - |
+| `shop_order_priority` | `int \| None` | `shopOrderPriority` |
+| `category_text` | `str \| None` | `categoryText` |
+| `grid_position` | `ShopGridPosition \| None` | `gridPosition` |
+| `can_be_trashed` | `bool \| None` | `canBeTrashed` |
 | `image` | `AssetUrl` | - |
 | `new_image` | `AssetUrl` | `newImage` |
 | `new_image_2` | `AssetUrl` | `newImage2` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `ShopGridPosition`
@@ -101,8 +101,8 @@ get_gear(gear_uuid: str, *, language: LanguageLike = None)
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `row` | `int | None` | - |
-| `column` | `int | None` | - |
+| `row` | `int \| None` | - |
+| `column` | `int \| None` | - |
 :::
 
 ## Notes

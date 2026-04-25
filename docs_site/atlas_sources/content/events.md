@@ -69,7 +69,7 @@ get_active_events(*, language: LanguageLike = None, now: datetime | None = None)
 | Parameter | Type | Default | Required | Description |
 |-----------|------|---------|----------|-------------|
 | `language` | `LanguageLike` | `None` | no | Localization code for endpoints that expose translated content. |
-| `now` | `datetime | None` | `None` | no | Optional UTC timestamp used instead of the current time. |
+| `now` | `datetime \| None` | `None` | no | Optional UTC timestamp used instead of the current time. |
 :::
 
 #### Notes
@@ -86,11 +86,11 @@ The helper compares event windows against `now` or the current UTC time.
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `display_name` | `str | None` | `displayName` |
-| `short_display_name` | `str | None` | `shortDisplayName` |
-| `start_time` | `datetime | None` | `startTime` |
-| `end_time` | `datetime | None` | `endTime` |
-| `asset_path` | `str | None` | `assetPath` |
+| `display_name` | `str \| None` | `displayName` |
+| `short_display_name` | `str \| None` | `shortDisplayName` |
+| `start_time` | `datetime \| None` | `startTime` |
+| `end_time` | `datetime \| None` | `endTime` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

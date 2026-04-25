@@ -43,14 +43,14 @@ The client applies a 1 hour expiry override.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `manifest_id` | `str | None` | `manifestId` |
-| `branch` | `str | None` | - |
-| `version` | `str | None` | - |
-| `build_version` | `str | None` | `buildVersion` |
-| `engine_version` | `str | None` | `engineVersion` |
-| `riot_client_version` | `str | None` | `riotClientVersion` |
-| `riot_client_build` | `str | None` | `riotClientBuild` |
-| `build_date` | `datetime | None` | `buildDate` |
+| `manifest_id` | `str \| None` | `manifestId` |
+| `branch` | `str \| None` | - |
+| `version` | `str \| None` | - |
+| `build_version` | `str \| None` | `buildVersion` |
+| `engine_version` | `str \| None` | `engineVersion` |
+| `riot_client_version` | `str \| None` | `riotClientVersion` |
+| `riot_client_build` | `str \| None` | `riotClientBuild` |
+| `build_date` | `datetime \| None` | `buildDate` |
 :::
 
 ## Notes

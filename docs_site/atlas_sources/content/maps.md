@@ -87,22 +87,22 @@ The helper matches exact case-insensitive names before substring matches.
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `narrative_description` | `str | None` | `narrativeDescription` |
-| `tactical_description` | `str | None` | `tacticalDescription` |
-| `coordinates` | `str | None` | - |
+| `narrative_description` | `str \| None` | `narrativeDescription` |
+| `tactical_description` | `str \| None` | `tacticalDescription` |
+| `coordinates` | `str \| None` | - |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `list_view_icon` | `AssetUrl` | `listViewIcon` |
 | `list_view_icon_tall` | `AssetUrl` | `listViewIconTall` |
 | `splash` | `AssetUrl` | - |
 | `stylized_background_image` | `AssetUrl` | `stylizedBackgroundImage` |
 | `premier_background_image` | `AssetUrl` | `premierBackgroundImage` |
-| `asset_path` | `str | None` | `assetPath` |
-| `map_url` | `str | None` | `mapUrl` |
+| `asset_path` | `str \| None` | `assetPath` |
+| `map_url` | `str \| None` | `mapUrl` |
 | `x_multiplier` | `Numeric` | `xMultiplier` |
 | `y_multiplier` | `Numeric` | `yMultiplier` |
 | `x_scalar_to_add` | `Numeric` | `xScalarToAdd` |
 | `y_scalar_to_add` | `Numeric` | `yScalarToAdd` |
-| `callouts` | `Lazy[list[Callout] | None] | None` | - |
+| `callouts` | `Lazy[list[Callout] \| None] \| None` | - |
 :::
 
 ### `Callout`
@@ -111,11 +111,11 @@ The helper matches exact case-insensitive names before substring matches.
 | Field | Type | API alias |
 |-------|------|-----------|
 | `region_name` | `str` | `regionName` |
-| `super_region` | `str | None` | `superRegion` |
-| `super_region_name` | `str | None` | `superRegionName` |
+| `super_region` | `str \| None` | `superRegion` |
+| `super_region_name` | `str \| None` | `superRegionName` |
 | `location` | `Position3D` | - |
-| `scale_3d` | `Position3D | None` | `scale3D` |
-| `rotation` | `Rotation3D | None` | - |
+| `scale_3d` | `Position3D \| None` | `scale3D` |
+| `rotation` | `Rotation3D \| None` | - |
 :::
 
 ### `Position3D`
@@ -123,9 +123,9 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `x` | `float | int` | - |
-| `y` | `float | int` | - |
-| `z` | `float | int` | - |
+| `x` | `float \| int` | - |
+| `y` | `float \| int` | - |
+| `z` | `float \| int` | - |
 :::
 
 ### `Rotation3D`
@@ -133,9 +133,9 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `pitch` | `float | int` | - |
-| `yaw` | `float | int` | - |
-| `roll` | `float | int` | - |
+| `pitch` | `float \| int` | - |
+| `yaw` | `float \| int` | - |
+| `roll` | `float \| int` | - |
 :::
 
 ## Notes

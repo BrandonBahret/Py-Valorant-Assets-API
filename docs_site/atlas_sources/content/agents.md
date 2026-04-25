@@ -95,10 +95,10 @@ The helper matches exact case-insensitive names before substring matches.
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `description` | `str | None` | - |
-| `developer_name` | `str | None` | `developerName` |
-| `release_date` | `datetime | None` | `releaseDate` |
-| `character_tags` | `list[str] | None` | `characterTags` |
+| `description` | `str \| None` | - |
+| `developer_name` | `str \| None` | `developerName` |
+| `release_date` | `datetime \| None` | `releaseDate` |
+| `character_tags` | `list[str] \| None` | `characterTags` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `display_icon_small` | `AssetUrl` | `displayIconSmall` |
 | `bust_portrait` | `AssetUrl` | `bustPortrait` |
@@ -109,15 +109,15 @@ The helper matches exact case-insensitive names before substring matches.
 | `home_screen_promo_tile_image` | `AssetUrl` | `homeScreenPromoTileImage` |
 | `background` | `AssetUrl` | - |
 | `background_gradient_colors` | `list[str]` | `backgroundGradientColors` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 | `is_full_portrait_right_facing` | `bool` | `isFullPortraitRightFacing` |
 | `is_playable_character` | `bool` | `isPlayableCharacter` |
 | `is_available_for_test` | `bool` | `isAvailableForTest` |
 | `is_base_content` | `bool` | `isBaseContent` |
-| `role` | `Role | None` | - |
-| `recruitment_data` | `RecruitmentData | None` | `recruitmentData` |
+| `role` | `Role \| None` | - |
+| `recruitment_data` | `RecruitmentData \| None` | `recruitmentData` |
 | `abilities` | `list[Ability]` | - |
-| `voice_line` | `VoiceLine | None` | `voiceLine` |
+| `voice_line` | `VoiceLine \| None` | `voiceLine` |
 :::
 
 ### `Role`
@@ -127,9 +127,9 @@ The helper matches exact case-insensitive names before substring matches.
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `description` | `str | None` | - |
+| `description` | `str \| None` | - |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `Ability`
@@ -138,8 +138,8 @@ The helper matches exact case-insensitive names before substring matches.
 | Field | Type | API alias |
 |-------|------|-----------|
 | `slot` | `str` | - |
-| `display_name` | `str | None` | `displayName` |
-| `description` | `str | None` | - |
+| `display_name` | `str \| None` | `displayName` |
+| `description` | `str \| None` | - |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 :::
 
@@ -158,13 +158,13 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `counter_id` | `str | None` | `counterId` |
-| `milestone_id` | `str | None` | `milestoneId` |
-| `milestone_threshold` | `int | None` | `milestoneThreshold` |
-| `use_level_vp_cost_override` | `bool | None` | `useLevelVpCostOverride` |
-| `level_vp_cost_override` | `int | None` | `levelVpCostOverride` |
-| `start_date` | `datetime | None` | `startDate` |
-| `end_date` | `datetime | None` | `endDate` |
+| `counter_id` | `str \| None` | `counterId` |
+| `milestone_id` | `str \| None` | `milestoneId` |
+| `milestone_threshold` | `int \| None` | `milestoneThreshold` |
+| `use_level_vp_cost_override` | `bool \| None` | `useLevelVpCostOverride` |
+| `level_vp_cost_override` | `int \| None` | `levelVpCostOverride` |
+| `start_date` | `datetime \| None` | `startDate` |
+| `end_date` | `datetime \| None` | `endDate` |
 :::
 
 ### `MediaAsset`
@@ -172,7 +172,7 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `id` | `int | None` | - |
+| `id` | `int \| None` | - |
 | `wwise` | `AssetUrl` | - |
 | `wave` | `AssetUrl` | - |
 :::

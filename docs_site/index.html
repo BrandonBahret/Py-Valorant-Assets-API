@@ -1549,12 +1549,12 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
         <table>
           <thead><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead>
           <tbody>
-            <tr><td><code>cache_path</code></td><td>`str</td><td>None`</td><td>temp SQLite path</td><td>no</td></tr>
-            <tr><td><code>default_expiry</code></td><td>`int</td><td>float`</td><td><code>86400</code></td><td>no</td></tr>
-            <tr><td><code>request_log_path</code></td><td>`str</td><td>None`</td><td><code>None</code></td><td>no</td></tr>
-            <tr><td><code>download_directory</code></td><td>`str</td><td>None`</td><td><code>None</code></td><td>no</td></tr>
-            <tr><td><code>timeout</code></td><td>`int</td><td>float</td><td>None`</td><td><code>20</code></td></tr>
-            <tr><td><code>session</code></td><td>`requests.Session</td><td>None`</td><td><code>None</code></td><td>no</td></tr>
+            <tr><td><code>cache_path</code></td><td><code>str | None</code></td><td>temp SQLite path</td><td>no</td><td>Location for the HTTP response cache</td></tr>
+            <tr><td><code>default_expiry</code></td><td><code>int | float</code></td><td><code>86400</code></td><td>no</td><td>Default freshness window in seconds</td></tr>
+            <tr><td><code>request_log_path</code></td><td><code>str | None</code></td><td><code>None</code></td><td>no</td><td>Optional request log file path</td></tr>
+            <tr><td><code>download_directory</code></td><td><code>str | None</code></td><td><code>None</code></td><td>no</td><td>Root directory for downloaded media assets</td></tr>
+            <tr><td><code>timeout</code></td><td><code>int | float | None</code></td><td><code>20</code></td><td>no</td><td>Request timeout in seconds</td></tr>
+            <tr><td><code>session</code></td><td><code>requests.Session | None</code></td><td><code>None</code></td><td>no</td><td>Optional custom session</td></tr>
           </tbody>
         </table>
         <h2 id="client-configuration-session-behavior" data-anchor="session-behavior">Session behavior</h2>
@@ -1573,8 +1573,8 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <p class="page-lead">When to use the repository notebook instead of the static docs.</p>
         </div>
 
-        <p>The repository includes a guided notebook at <code>notebooks/valorant_assets_api_tutorial.ipynb</code>.</p>
-        <p>Use the notebook when you want an interactive walkthrough of:</p>
+        <p>The repository includes a guided notebook at <a href="https://github.com/BrandonBahret/Py-Valorant-Assets-API/blob/main/notebooks/valorant_assets_api_tutorial.ipynb" target="_blank"><code>notebooks/valorant_assets_api_tutorial.ipynb</code></a>.</p>
+        <p>Use the notebook for an interactive walkthrough of:</p>
         <ul>
           <li>package installation and setup</li>
           <li>client construction</li>
@@ -1584,7 +1584,116 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <li>cache configuration</li>
           <li>typed model inspection</li>
         </ul>
-        <p>Stay in the Atlas docs when you want fast lookup. Open the notebook when you want a single guided flow with executable examples.</p>
+
+        <div class="callout info">The embedded export below is a read-only preview of the executed notebook. Open the full export in a separate tab when you want native width, your browser's page search, or the original notebook source.</div>
+        <style>
+          .notebook-preview {
+            margin: 28px 0 34px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            background:
+              linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, transparent), color-mix(in srgb, var(--bg) 88%, transparent)),
+              radial-gradient(circle at top left, color-mix(in srgb, var(--accent2) 12%, transparent), transparent 42%);
+            box-shadow: 0 18px 46px color-mix(in srgb, var(--bg) 46%, transparent);
+          }
+          .notebook-preview__bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border-subtle);
+            background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 92%, transparent), transparent);
+          }
+          .notebook-preview__title {
+            font-family: var(--font-display);
+            font-size: 22px;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin: 0;
+          }
+          .notebook-preview__meta {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent2);
+          }
+          .notebook-preview__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+          }
+          .notebook-preview__action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 36px;
+            padding: 0 13px;
+            border-radius: 999px;
+            border: 1px solid color-mix(in srgb, var(--accent2) 20%, var(--border));
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+            color: var(--text);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-decoration: none;
+            white-space: nowrap;
+          }
+          .notebook-preview__action:hover {
+            text-decoration: none;
+            border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
+            background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+          }
+          .notebook-preview__frame-wrap {
+            padding: 18px;
+          }
+          .notebook-preview__frame {
+            display: block;
+            width: 100%;
+            min-height: 900px;
+            border: 1px solid color-mix(in srgb, var(--accent2) 12%, var(--border));
+            border-radius: 14px;
+            background: #ffffff;
+          }
+          .notebook-preview__caption {
+            padding: 0 18px 18px;
+            font-size: 13px;
+            color: var(--text-dimmer);
+          }
+          @media (max-width: 820px) {
+            .notebook-preview__bar {
+              flex-direction: column;
+              align-items: flex-start;
+            }
+            .notebook-preview__frame {
+              min-height: 720px;
+            }
+          }
+        </style>
+        <section class="notebook-preview" aria-labelledby="notebook-preview-title">
+          <div class="notebook-preview__bar">
+            <div>
+              <div class="notebook-preview__meta">Notebook export</div>
+              <p class="notebook-preview__title" id="notebook-preview-title">Executed HTML walkthrough</p>
+            </div>
+            <div class="notebook-preview__actions">
+              <a class="notebook-preview__action" href="./notebooks/valorant_assets_api_tutorial.html" target="_blank">Open HTML export</a>
+              <a class="notebook-preview__action" href="https://github.com/BrandonBahret/Py-Valorant-Assets-API/blob/main/notebooks/valorant_assets_api_tutorial.ipynb" target="_blank">Open notebook source</a>
+            </div>
+          </div>
+          <div class="notebook-preview__frame-wrap">
+            <iframe
+              class="notebook-preview__frame"
+              src="./notebooks/valorant_assets_api_tutorial.html"
+              title="Valorant assets API tutorial notebook export"
+              loading="lazy"
+              referrerpolicy="no-referrer"
+            ></iframe>
+          </div>
+          <p class="notebook-preview__caption">This is a non-interactive export</p>
+        </section>
       </div>
 
       <div class="section" id="section-agents" data-section="agents">
@@ -1649,10 +1758,10 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>developer_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>release_date</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>character_tags</code></td><td>`list[str]</td><td>None`</td></tr>
+            <tr><td><code>description</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>developer_name</code></td><td><code>str | None</code></td><td><code>developerName</code></td></tr>
+            <tr><td><code>release_date</code></td><td><code>datetime | None</code></td><td><code>releaseDate</code></td></tr>
+            <tr><td><code>character_tags</code></td><td><code>list[str] | None</code></td><td><code>characterTags</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>display_icon_small</code></td><td><code>AssetUrl</code></td><td><code>displayIconSmall</code></td></tr>
             <tr><td><code>bust_portrait</code></td><td><code>AssetUrl</code></td><td><code>bustPortrait</code></td></tr>
@@ -1663,15 +1772,15 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
             <tr><td><code>home_screen_promo_tile_image</code></td><td><code>AssetUrl</code></td><td><code>homeScreenPromoTileImage</code></td></tr>
             <tr><td><code>background</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
             <tr><td><code>background_gradient_colors</code></td><td><code>list[str]</code></td><td><code>backgroundGradientColors</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
             <tr><td><code>is_full_portrait_right_facing</code></td><td><code>bool</code></td><td><code>isFullPortraitRightFacing</code></td></tr>
             <tr><td><code>is_playable_character</code></td><td><code>bool</code></td><td><code>isPlayableCharacter</code></td></tr>
             <tr><td><code>is_available_for_test</code></td><td><code>bool</code></td><td><code>isAvailableForTest</code></td></tr>
             <tr><td><code>is_base_content</code></td><td><code>bool</code></td><td><code>isBaseContent</code></td></tr>
-            <tr><td><code>role</code></td><td>`Role</td><td>None`</td></tr>
-            <tr><td><code>recruitment_data</code></td><td>`RecruitmentData</td><td>None`</td></tr>
+            <tr><td><code>role</code></td><td><code>Role | None</code></td><td>-</td></tr>
+            <tr><td><code>recruitment_data</code></td><td><code>RecruitmentData | None</code></td><td><code>recruitmentData</code></td></tr>
             <tr><td><code>abilities</code></td><td><code>list[Ability]</code></td><td>-</td></tr>
-            <tr><td><code>voice_line</code></td><td>`VoiceLine</td><td>None`</td></tr>
+            <tr><td><code>voice_line</code></td><td><code>VoiceLine | None</code></td><td><code>voiceLine</code></td></tr>
           </tbody>
         </table>
         <h3 id="agents-role" data-anchor="role"><code>Role</code></h3>
@@ -1680,9 +1789,9 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>description</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>description</code></td><td><code>str | None</code></td><td>-</td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="agents-ability" data-anchor="ability"><code>Ability</code></h3>
@@ -1690,8 +1799,8 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>slot</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>display_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>description</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>display_name</code></td><td><code>str | None</code></td><td><code>displayName</code></td></tr>
+            <tr><td><code>description</code></td><td><code>str | None</code></td><td>-</td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
           </tbody>
         </table>
@@ -1708,20 +1817,20 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>counter_id</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>milestone_id</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>milestone_threshold</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>use_level_vp_cost_override</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>level_vp_cost_override</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>start_date</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>end_date</code></td><td>`datetime</td><td>None`</td></tr>
+            <tr><td><code>counter_id</code></td><td><code>str | None</code></td><td><code>counterId</code></td></tr>
+            <tr><td><code>milestone_id</code></td><td><code>str | None</code></td><td><code>milestoneId</code></td></tr>
+            <tr><td><code>milestone_threshold</code></td><td><code>int | None</code></td><td><code>milestoneThreshold</code></td></tr>
+            <tr><td><code>use_level_vp_cost_override</code></td><td><code>bool | None</code></td><td><code>useLevelVpCostOverride</code></td></tr>
+            <tr><td><code>level_vp_cost_override</code></td><td><code>int | None</code></td><td><code>levelVpCostOverride</code></td></tr>
+            <tr><td><code>start_date</code></td><td><code>datetime | None</code></td><td><code>startDate</code></td></tr>
+            <tr><td><code>end_date</code></td><td><code>datetime | None</code></td><td><code>endDate</code></td></tr>
           </tbody>
         </table>
         <h3 id="agents-mediaasset" data-anchor="mediaasset"><code>MediaAsset</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>id</code></td><td>`int</td><td>None`</td></tr>
+            <tr><td><code>id</code></td><td><code>int | None</code></td><td>-</td></tr>
             <tr><td><code>wwise</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
             <tr><td><code>wave</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
           </tbody>
@@ -1775,10 +1884,10 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>is_hidden_if_not_owned</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>theme_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>is_hidden_if_not_owned</code></td><td><code>bool | None</code></td><td><code>isHiddenIfNotOwned</code></td></tr>
+            <tr><td><code>theme_uuid</code></td><td><code>str | None</code></td><td><code>themeUuid</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
             <tr><td><code>levels</code></td><td><code>Lazy[list[BuddyLevel]]</code></td><td>-</td></tr>
           </tbody>
         </table>
@@ -1787,11 +1896,11 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>charm_level</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>hide_if_not_owned</code></td><td>`bool</td><td>None`</td></tr>
+            <tr><td><code>charm_level</code></td><td><code>int | None</code></td><td><code>charmLevel</code></td></tr>
+            <tr><td><code>hide_if_not_owned</code></td><td><code>bool | None</code></td><td><code>hideIfNotOwned</code></td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="buddies-notes" data-anchor="notes">Notes</h2>
@@ -1842,17 +1951,17 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>display_name_sub_text</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>extra_description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>promo_description</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>display_name_sub_text</code></td><td><code>str | None</code></td><td><code>displayNameSubText</code></td></tr>
+            <tr><td><code>description</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>extra_description</code></td><td><code>str | None</code></td><td><code>extraDescription</code></td></tr>
+            <tr><td><code>promo_description</code></td><td><code>str | None</code></td><td><code>promoDescription</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>display_icon_2</code></td><td><code>AssetUrl</code></td><td><code>displayIcon2</code></td></tr>
             <tr><td><code>display_icon_3</code></td><td><code>AssetUrl</code></td><td><code>displayIcon3</code></td></tr>
             <tr><td><code>vertical_promo_image</code></td><td><code>AssetUrl</code></td><td><code>verticalPromoImage</code></td></tr>
-            <tr><td><code>use_additional_context</code></td><td>`bool</td><td>None`</td></tr>
+            <tr><td><code>use_additional_context</code></td><td><code>bool | None</code></td><td><code>useAdditionalContext</code></td></tr>
             <tr><td><code>logo_icon</code></td><td><code>AssetUrl</code></td><td><code>logoIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="bundles-notes" data-anchor="notes">Notes</h2>
@@ -1897,7 +2006,7 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="ceremonies-notes" data-anchor="notes">Notes</h2>
@@ -1947,8 +2056,8 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>asset_object_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_object_name</code></td><td><code>str | None</code></td><td><code>assetObjectName</code></td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
             <tr><td><code>tiers</code></td><td><code>Lazy[list[CompetitiveTier]]</code></td><td>-</td></tr>
           </tbody>
         </table>
@@ -1960,8 +2069,8 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
             <tr><td><code>tier_name</code></td><td><code>str</code></td><td><code>tierName</code></td></tr>
             <tr><td><code>division</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>division_name</code></td><td><code>str</code></td><td><code>divisionName</code></td></tr>
-            <tr><td><code>color</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>background_color</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>color</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>background_color</code></td><td><code>str | None</code></td><td><code>backgroundColor</code></td></tr>
             <tr><td><code>small_icon</code></td><td><code>AssetUrl</code></td><td><code>smallIcon</code></td></tr>
             <tr><td><code>large_icon</code></td><td><code>AssetUrl</code></td><td><code>largeIcon</code></td></tr>
             <tr><td><code>rank_triangle_down_icon</code></td><td><code>AssetUrl</code></td><td><code>rankTriangleDownIcon</code></td></tr>
@@ -2016,13 +2125,13 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>dev_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>rank</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>juice_value</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>juice_cost</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>highlight_color</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>dev_name</code></td><td><code>str | None</code></td><td><code>devName</code></td></tr>
+            <tr><td><code>rank</code></td><td><code>int | None</code></td><td>-</td></tr>
+            <tr><td><code>juice_value</code></td><td><code>int | None</code></td><td><code>juiceValue</code></td></tr>
+            <tr><td><code>juice_cost</code></td><td><code>int | None</code></td><td><code>juiceCost</code></td></tr>
+            <tr><td><code>highlight_color</code></td><td><code>str | None</code></td><td><code>highlightColor</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="content-tiers-notes" data-anchor="notes">Notes</h2>
@@ -2089,23 +2198,23 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>ship_it</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>use_level_vp_cost_override</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>level_vp_cost_override</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>free_reward_schedule_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>ship_it</code></td><td><code>bool | None</code></td><td><code>shipIt</code></td></tr>
+            <tr><td><code>use_level_vp_cost_override</code></td><td><code>bool | None</code></td><td><code>useLevelVPCostOverride</code></td></tr>
+            <tr><td><code>level_vp_cost_override</code></td><td><code>int | None</code></td><td><code>levelVPCostOverride</code></td></tr>
+            <tr><td><code>free_reward_schedule_uuid</code></td><td><code>str | None</code></td><td><code>freeRewardScheduleUuid</code></td></tr>
             <tr><td><code>content</code></td><td><code>Lazy[ContractContent]</code></td><td>-</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="contracts-contractcontent" data-anchor="contractcontent"><code>ContractContent</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>relation_type</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>relation_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>relation_type</code></td><td><code>str | None</code></td><td><code>relationType</code></td></tr>
+            <tr><td><code>relation_uuid</code></td><td><code>str | None</code></td><td><code>relationUuid</code></td></tr>
             <tr><td><code>chapters</code></td><td><code>Lazy[list[ContractChapter]]</code></td><td>-</td></tr>
-            <tr><td><code>premium_reward_schedule_uuid</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>premium_vp_cost</code></td><td>`int</td><td>None`</td></tr>
+            <tr><td><code>premium_reward_schedule_uuid</code></td><td><code>str | None</code></td><td><code>premiumRewardScheduleUuid</code></td></tr>
+            <tr><td><code>premium_vp_cost</code></td><td><code>int | None</code></td><td><code>premiumVPCost</code></td></tr>
           </tbody>
         </table>
         <h3 id="contracts-contractchapter" data-anchor="contractchapter"><code>ContractChapter</code></h3>
@@ -2114,19 +2223,19 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>is_epilogue</code></td><td><code>bool</code></td><td><code>isEpilogue</code></td></tr>
             <tr><td><code>levels</code></td><td><code>list[ContractLevel]</code></td><td>-</td></tr>
-            <tr><td><code>free_rewards</code></td><td>`list[Reward]</td><td>None`</td></tr>
+            <tr><td><code>free_rewards</code></td><td><code>list[Reward] | None</code></td><td><code>freeRewards</code></td></tr>
           </tbody>
         </table>
         <h3 id="contracts-contractlevel" data-anchor="contractlevel"><code>ContractLevel</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>reward</code></td><td>`Reward</td><td>None`</td></tr>
+            <tr><td><code>reward</code></td><td><code>Reward | None</code></td><td>-</td></tr>
             <tr><td><code>xp</code></td><td><code>int</code></td><td>-</td></tr>
-            <tr><td><code>vp_cost</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>is_purchasable_with_vp</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>dough_cost</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>is_purchasable_with_dough</code></td><td>`bool</td><td>None`</td></tr>
+            <tr><td><code>vp_cost</code></td><td><code>int | None</code></td><td><code>vpCost</code></td></tr>
+            <tr><td><code>is_purchasable_with_vp</code></td><td><code>bool | None</code></td><td><code>isPurchasableWithVP</code></td></tr>
+            <tr><td><code>dough_cost</code></td><td><code>int | None</code></td><td><code>doughCost</code></td></tr>
+            <tr><td><code>is_purchasable_with_dough</code></td><td><code>bool | None</code></td><td><code>isPurchasableWithDough</code></td></tr>
           </tbody>
         </table>
         <h3 id="contracts-reward" data-anchor="reward"><code>Reward</code></h3>
@@ -2187,11 +2296,11 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>display_name_singular</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>display_name_singular</code></td><td><code>str | None</code></td><td><code>displayNameSingular</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>large_icon</code></td><td><code>AssetUrl</code></td><td><code>largeIcon</code></td></tr>
             <tr><td><code>reward_preview_icon</code></td><td><code>AssetUrl</code></td><td><code>rewardPreviewIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="currencies-notes" data-anchor="notes">Notes</h2>
@@ -2244,7 +2353,7 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead>
           <tbody>
             <tr><td><code>language</code></td><td><code>LanguageLike</code></td><td><code>None</code></td><td>no</td><td>Localization code for endpoints that expose translated content.</td></tr>
-            <tr><td><code>now</code></td><td>`datetime</td><td>None`</td><td><code>None</code></td><td>no</td></tr>
+            <tr><td><code>now</code></td><td><code>datetime | None</code></td><td><code>None</code></td><td>no</td><td>Optional UTC timestamp used instead of the current time.</td></tr>
           </tbody>
         </table>
         <h4 id="events-notes" data-anchor="notes">Notes</h4>
@@ -2256,11 +2365,11 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>display_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>short_display_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>start_time</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>end_time</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>display_name</code></td><td><code>str | None</code></td><td><code>displayName</code></td></tr>
+            <tr><td><code>short_display_name</code></td><td><code>str | None</code></td><td><code>shortDisplayName</code></td></tr>
+            <tr><td><code>start_time</code></td><td><code>datetime | None</code></td><td><code>startTime</code></td></tr>
+            <tr><td><code>end_time</code></td><td><code>datetime | None</code></td><td><code>endTime</code></td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="events-notes-2" data-anchor="notes-2">Notes</h2>
@@ -2311,20 +2420,20 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>duration</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>description</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>duration</code></td><td><code>str | None</code></td><td>-</td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>team_roles</code></td><td>`list[str]</td><td>None`</td></tr>
-            <tr><td><code>game_feature_overrides</code></td><td>`list[GameFeatureOverride]</td><td>None`</td></tr>
-            <tr><td><code>game_rule_bool_overrides</code></td><td>`list[GameRuleBoolOverride]</td><td>None`</td></tr>
-            <tr><td><code>allows_match_timeouts</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>allows_custom_game_replays</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>is_minimap_hidden</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>is_team_voice_allowed</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>orb_count</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>rounds_per_half</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>economy_type</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
+            <tr><td><code>team_roles</code></td><td><code>list[str] | None</code></td><td><code>teamRoles</code></td></tr>
+            <tr><td><code>game_feature_overrides</code></td><td><code>list[GameFeatureOverride] | None</code></td><td><code>gameFeatureOverrides</code></td></tr>
+            <tr><td><code>game_rule_bool_overrides</code></td><td><code>list[GameRuleBoolOverride] | None</code></td><td><code>gameRuleBoolOverrides</code></td></tr>
+            <tr><td><code>allows_match_timeouts</code></td><td><code>bool | None</code></td><td><code>allowsMatchTimeouts</code></td></tr>
+            <tr><td><code>allows_custom_game_replays</code></td><td><code>bool | None</code></td><td><code>allowsCustomGameReplays</code></td></tr>
+            <tr><td><code>is_minimap_hidden</code></td><td><code>bool | None</code></td><td><code>isMinimapHidden</code></td></tr>
+            <tr><td><code>is_team_voice_allowed</code></td><td><code>bool | None</code></td><td><code>isTeamVoiceAllowed</code></td></tr>
+            <tr><td><code>orb_count</code></td><td><code>int | None</code></td><td><code>orbCount</code></td></tr>
+            <tr><td><code>rounds_per_half</code></td><td><code>int | None</code></td><td><code>roundsPerHalf</code></td></tr>
+            <tr><td><code>economy_type</code></td><td><code>str | None</code></td><td><code>economyType</code></td></tr>
             <tr><td><code>list_view_icon_tall</code></td><td><code>AssetUrl</code></td><td><code>listViewIconTall</code></td></tr>
           </tbody>
         </table>
@@ -2392,12 +2501,12 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>descriptions</code></td><td>`list[str]</td><td>None`</td></tr>
-            <tr><td><code>details</code></td><td>`list[GearDetail]</td><td>None`</td></tr>
+            <tr><td><code>description</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>descriptions</code></td><td><code>list[str] | None</code></td><td>-</td></tr>
+            <tr><td><code>details</code></td><td><code>list[GearDetail] | None</code></td><td>-</td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>shop_data</code></td><td>`ShopData</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
+            <tr><td><code>shop_data</code></td><td><code>ShopData | None</code></td><td><code>shopData</code></td></tr>
           </tbody>
         </table>
         <h3 id="gear-geardetail" data-anchor="geardetail"><code>GearDetail</code></h3>
@@ -2405,31 +2514,31 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>name</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>value</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>value</code></td><td><code>str | None</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h3 id="gear-shopdata" data-anchor="shopdata"><code>ShopData</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>cost</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>category</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>shop_order_priority</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>category_text</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>grid_position</code></td><td>`ShopGridPosition</td><td>None`</td></tr>
-            <tr><td><code>can_be_trashed</code></td><td>`bool</td><td>None`</td></tr>
+            <tr><td><code>cost</code></td><td><code>int | None</code></td><td>-</td></tr>
+            <tr><td><code>category</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>shop_order_priority</code></td><td><code>int | None</code></td><td><code>shopOrderPriority</code></td></tr>
+            <tr><td><code>category_text</code></td><td><code>str | None</code></td><td><code>categoryText</code></td></tr>
+            <tr><td><code>grid_position</code></td><td><code>ShopGridPosition | None</code></td><td><code>gridPosition</code></td></tr>
+            <tr><td><code>can_be_trashed</code></td><td><code>bool | None</code></td><td><code>canBeTrashed</code></td></tr>
             <tr><td><code>image</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
             <tr><td><code>new_image</code></td><td><code>AssetUrl</code></td><td><code>newImage</code></td></tr>
             <tr><td><code>new_image_2</code></td><td><code>AssetUrl</code></td><td><code>newImage2</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="gear-shopgridposition" data-anchor="shopgridposition"><code>ShopGridPosition</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>row</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>column</code></td><td>`int</td><td>None`</td></tr>
+            <tr><td><code>row</code></td><td><code>int | None</code></td><td>-</td></tr>
+            <tr><td><code>column</code></td><td><code>int | None</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h2 id="gear-notes" data-anchor="notes">Notes</h2>
@@ -2482,9 +2591,9 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
             <tr><td><code>starting_level</code></td><td><code>int</code></td><td><code>startingLevel</code></td></tr>
             <tr><td><code>level_number</code></td><td><code>int</code></td><td><code>levelNumber</code></td></tr>
-            <tr><td><code>level_number_appearance</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>small_player_card_appearance</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>level_number_appearance</code></td><td><code>str | None</code></td><td><code>levelNumberAppearance</code></td></tr>
+            <tr><td><code>small_player_card_appearance</code></td><td><code>str | None</code></td><td><code>smallPlayerCardAppearance</code></td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="level-borders-notes" data-anchor="notes">Notes</h2>
@@ -2550,22 +2659,22 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>narrative_description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>tactical_description</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>coordinates</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>narrative_description</code></td><td><code>str | None</code></td><td><code>narrativeDescription</code></td></tr>
+            <tr><td><code>tactical_description</code></td><td><code>str | None</code></td><td><code>tacticalDescription</code></td></tr>
+            <tr><td><code>coordinates</code></td><td><code>str | None</code></td><td>-</td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>list_view_icon</code></td><td><code>AssetUrl</code></td><td><code>listViewIcon</code></td></tr>
             <tr><td><code>list_view_icon_tall</code></td><td><code>AssetUrl</code></td><td><code>listViewIconTall</code></td></tr>
             <tr><td><code>splash</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
             <tr><td><code>stylized_background_image</code></td><td><code>AssetUrl</code></td><td><code>stylizedBackgroundImage</code></td></tr>
             <tr><td><code>premier_background_image</code></td><td><code>AssetUrl</code></td><td><code>premierBackgroundImage</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>map_url</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
+            <tr><td><code>map_url</code></td><td><code>str | None</code></td><td><code>mapUrl</code></td></tr>
             <tr><td><code>x_multiplier</code></td><td><code>Numeric</code></td><td><code>xMultiplier</code></td></tr>
             <tr><td><code>y_multiplier</code></td><td><code>Numeric</code></td><td><code>yMultiplier</code></td></tr>
             <tr><td><code>x_scalar_to_add</code></td><td><code>Numeric</code></td><td><code>xScalarToAdd</code></td></tr>
             <tr><td><code>y_scalar_to_add</code></td><td><code>Numeric</code></td><td><code>yScalarToAdd</code></td></tr>
-            <tr><td><code>callouts</code></td><td>`Lazy[list[Callout]</td><td>None]</td></tr>
+            <tr><td><code>callouts</code></td><td><code>Lazy[list[Callout] | None] | None</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h3 id="maps-callout" data-anchor="callout"><code>Callout</code></h3>
@@ -2573,29 +2682,29 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>region_name</code></td><td><code>str</code></td><td><code>regionName</code></td></tr>
-            <tr><td><code>super_region</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>super_region_name</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>super_region</code></td><td><code>str | None</code></td><td><code>superRegion</code></td></tr>
+            <tr><td><code>super_region_name</code></td><td><code>str | None</code></td><td><code>superRegionName</code></td></tr>
             <tr><td><code>location</code></td><td><code>Position3D</code></td><td>-</td></tr>
-            <tr><td><code>scale_3d</code></td><td>`Position3D</td><td>None`</td></tr>
-            <tr><td><code>rotation</code></td><td>`Rotation3D</td><td>None`</td></tr>
+            <tr><td><code>scale_3d</code></td><td><code>Position3D | None</code></td><td><code>scale3D</code></td></tr>
+            <tr><td><code>rotation</code></td><td><code>Rotation3D | None</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h3 id="maps-position3d" data-anchor="position3d"><code>Position3D</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>x</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>y</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>z</code></td><td>`float</td><td>int`</td></tr>
+            <tr><td><code>x</code></td><td><code>float | int</code></td><td>-</td></tr>
+            <tr><td><code>y</code></td><td><code>float | int</code></td><td>-</td></tr>
+            <tr><td><code>z</code></td><td><code>float | int</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h3 id="maps-rotation3d" data-anchor="rotation3d"><code>Rotation3D</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>pitch</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>yaw</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>roll</code></td><td>`float</td><td>int`</td></tr>
+            <tr><td><code>pitch</code></td><td><code>float | int</code></td><td>-</td></tr>
+            <tr><td><code>yaw</code></td><td><code>float | int</code></td><td>-</td></tr>
+            <tr><td><code>roll</code></td><td><code>float | int</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h2 id="maps-notes-2" data-anchor="notes-2">Notes</h2>
@@ -2645,16 +2754,16 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>display_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>title</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>type</code></td><td>`MissionType</td><td>str</td></tr>
-            <tr><td><code>xp_grant</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>progress_to_complete</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>activation_date</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>expiration_date</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>tags</code></td><td>`list[str]</td><td>None`</td></tr>
-            <tr><td><code>objectives</code></td><td>`list[MissionObjectiveProgress]</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>display_name</code></td><td><code>str | None</code></td><td><code>displayName</code></td></tr>
+            <tr><td><code>title</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>type</code></td><td><code>MissionType | str | None</code></td><td>-</td></tr>
+            <tr><td><code>xp_grant</code></td><td><code>int | None</code></td><td><code>xpGrant</code></td></tr>
+            <tr><td><code>progress_to_complete</code></td><td><code>int | None</code></td><td><code>progressToComplete</code></td></tr>
+            <tr><td><code>activation_date</code></td><td><code>datetime | None</code></td><td><code>activationDate</code></td></tr>
+            <tr><td><code>expiration_date</code></td><td><code>datetime | None</code></td><td><code>expirationDate</code></td></tr>
+            <tr><td><code>tags</code></td><td><code>list[str] | None</code></td><td>-</td></tr>
+            <tr><td><code>objectives</code></td><td><code>list[MissionObjectiveProgress] | None</code></td><td>-</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="missions-missionobjectiveprogress" data-anchor="missionobjectiveprogress"><code>MissionObjectiveProgress</code></h3>
@@ -2712,8 +2821,8 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>directive</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>directive</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="objectives-notes-3" data-anchor="notes-3">Notes</h2>
@@ -2764,13 +2873,13 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>is_hidden_if_not_owned</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>theme_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>is_hidden_if_not_owned</code></td><td><code>bool | None</code></td><td><code>isHiddenIfNotOwned</code></td></tr>
+            <tr><td><code>theme_uuid</code></td><td><code>str | None</code></td><td><code>themeUuid</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>small_art</code></td><td><code>AssetUrl</code></td><td><code>smallArt</code></td></tr>
             <tr><td><code>wide_art</code></td><td><code>AssetUrl</code></td><td><code>wideArt</code></td></tr>
             <tr><td><code>large_art</code></td><td><code>AssetUrl</code></td><td><code>largeArt</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="player-cards-notes" data-anchor="notes">Notes</h2>
@@ -2820,10 +2929,10 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>display_name</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>title_text</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>is_hidden_if_not_owned</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>display_name</code></td><td><code>str | None</code></td><td><code>displayName</code></td></tr>
+            <tr><td><code>title_text</code></td><td><code>str | None</code></td><td><code>titleText</code></td></tr>
+            <tr><td><code>is_hidden_if_not_owned</code></td><td><code>bool | None</code></td><td><code>isHiddenIfNotOwned</code></td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="player-titles-notes" data-anchor="notes">Notes</h2>
@@ -2876,7 +2985,7 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Required</th><th>Description</th></tr></thead>
           <tbody>
             <tr><td><code>language</code></td><td><code>LanguageLike</code></td><td><code>None</code></td><td>no</td><td>Localization code for endpoints that expose translated content.</td></tr>
-            <tr><td><code>now</code></td><td>`datetime</td><td>None`</td><td><code>None</code></td><td>no</td></tr>
+            <tr><td><code>now</code></td><td><code>datetime | None</code></td><td><code>None</code></td><td>no</td><td>Optional UTC timestamp used instead of the current time.</td></tr>
           </tbody>
         </table>
         <h4 id="seasons-notes" data-anchor="notes">Notes</h4>
@@ -2889,12 +2998,12 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>title</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>type</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>parent_uuid</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>start_time</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>end_time</code></td><td>`datetime</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>title</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>type</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>parent_uuid</code></td><td><code>str | None</code></td><td><code>parentUuid</code></td></tr>
+            <tr><td><code>start_time</code></td><td><code>datetime | None</code></td><td><code>startTime</code></td></tr>
+            <tr><td><code>end_time</code></td><td><code>datetime | None</code></td><td><code>endTime</code></td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="seasons-notes-2" data-anchor="notes-2">Notes</h2>
@@ -2945,16 +3054,16 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>category</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>theme_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>category</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>theme_uuid</code></td><td><code>str | None</code></td><td><code>themeUuid</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>full_icon</code></td><td><code>AssetUrl</code></td><td><code>fullIcon</code></td></tr>
             <tr><td><code>full_transparent_icon</code></td><td><code>AssetUrl</code></td><td><code>fullTransparentIcon</code></td></tr>
             <tr><td><code>animation_gif</code></td><td><code>AssetUrl</code></td><td><code>animationGif</code></td></tr>
             <tr><td><code>animation_png</code></td><td><code>AssetUrl</code></td><td><code>animationPng</code></td></tr>
-            <tr><td><code>hide_if_not_owned</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>is_null_spray</code></td><td>`bool</td><td>None`</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>hide_if_not_owned</code></td><td><code>bool | None</code></td><td><code>hideIfNotOwned</code></td></tr>
+            <tr><td><code>is_null_spray</code></td><td><code>bool | None</code></td><td><code>isNullSpray</code></td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
             <tr><td><code>levels</code></td><td><code>Lazy[list[SprayLevel]]</code></td><td>-</td></tr>
           </tbody>
         </table>
@@ -2963,10 +3072,10 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
-            <tr><td><code>spray_level</code></td><td>`int</td><td>None`</td></tr>
+            <tr><td><code>spray_level</code></td><td><code>int | None</code></td><td><code>sprayLevel</code></td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="sprays-notes" data-anchor="notes">Notes</h2>
@@ -3019,7 +3128,7 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>store_featured_image</code></td><td><code>AssetUrl</code></td><td><code>storeFeaturedImage</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h2 id="themes-notes" data-anchor="notes">Notes</h2>
@@ -3085,13 +3194,13 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>category</code></td><td>`WeaponCategory</td><td>str</td></tr>
-            <tr><td><code>default_skin_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>category</code></td><td><code>WeaponCategory | str | None</code></td><td>-</td></tr>
+            <tr><td><code>default_skin_uuid</code></td><td><code>str | None</code></td><td><code>defaultSkinUuid</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>kill_stream_icon</code></td><td><code>AssetUrl</code></td><td><code>killStreamIcon</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>weapon_stats</code></td><td>`WeaponStats</td><td>None`</td></tr>
-            <tr><td><code>shop_data</code></td><td>`ShopData</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
+            <tr><td><code>weapon_stats</code></td><td><code>WeaponStats | None</code></td><td><code>weaponStats</code></td></tr>
+            <tr><td><code>shop_data</code></td><td><code>ShopData | None</code></td><td><code>shopData</code></td></tr>
             <tr><td><code>skins</code></td><td><code>Lazy[list[WeaponSkin]]</code></td><td>-</td></tr>
           </tbody>
         </table>
@@ -3099,21 +3208,21 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>fire_rate</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>magazine_size</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>run_speed_multiplier</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>equip_time_seconds</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>reload_time_seconds</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>first_bullet_accuracy</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>shotgun_pellet_count</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>wall_penetration</code></td><td>`WallPenetration</td><td>str</td></tr>
-            <tr><td><code>feature</code></td><td>`WeaponStatsFeature</td><td>str</td></tr>
-            <tr><td><code>fire_mode</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>alt_fire_type</code></td><td>`AltFireType</td><td>str</td></tr>
-            <tr><td><code>ads_stats</code></td><td>`AdsStats</td><td>None`</td></tr>
-            <tr><td><code>alt_shotgun_stats</code></td><td>`AltShotgunStats</td><td>None`</td></tr>
-            <tr><td><code>air_burst_stats</code></td><td>`AirBurstStats</td><td>None`</td></tr>
-            <tr><td><code>damage_ranges</code></td><td>`list[DamageRange]</td><td>None`</td></tr>
+            <tr><td><code>fire_rate</code></td><td><code>float | int | None</code></td><td><code>fireRate</code></td></tr>
+            <tr><td><code>magazine_size</code></td><td><code>int | None</code></td><td><code>magazineSize</code></td></tr>
+            <tr><td><code>run_speed_multiplier</code></td><td><code>float | int | None</code></td><td><code>runSpeedMultiplier</code></td></tr>
+            <tr><td><code>equip_time_seconds</code></td><td><code>float | int | None</code></td><td><code>equipTimeSeconds</code></td></tr>
+            <tr><td><code>reload_time_seconds</code></td><td><code>float | int | None</code></td><td><code>reloadTimeSeconds</code></td></tr>
+            <tr><td><code>first_bullet_accuracy</code></td><td><code>float | int | None</code></td><td><code>firstBulletAccuracy</code></td></tr>
+            <tr><td><code>shotgun_pellet_count</code></td><td><code>int | None</code></td><td><code>shotgunPelletCount</code></td></tr>
+            <tr><td><code>wall_penetration</code></td><td><code>WallPenetration | str | None</code></td><td><code>wallPenetration</code></td></tr>
+            <tr><td><code>feature</code></td><td><code>WeaponStatsFeature | str | None</code></td><td>-</td></tr>
+            <tr><td><code>fire_mode</code></td><td><code>str | None</code></td><td><code>fireMode</code></td></tr>
+            <tr><td><code>alt_fire_type</code></td><td><code>AltFireType | str | None</code></td><td><code>altFireType</code></td></tr>
+            <tr><td><code>ads_stats</code></td><td><code>AdsStats | None</code></td><td><code>adsStats</code></td></tr>
+            <tr><td><code>alt_shotgun_stats</code></td><td><code>AltShotgunStats | None</code></td><td><code>altShotgunStats</code></td></tr>
+            <tr><td><code>air_burst_stats</code></td><td><code>AirBurstStats | None</code></td><td><code>airBurstStats</code></td></tr>
+            <tr><td><code>damage_ranges</code></td><td><code>list[DamageRange] | None</code></td><td><code>damageRanges</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-weaponskin" data-anchor="weaponskin"><code>WeaponSkin</code></h3>
@@ -3122,11 +3231,11 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>theme_uuid</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>content_tier_uuid</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>theme_uuid</code></td><td><code>str | None</code></td><td><code>themeUuid</code></td></tr>
+            <tr><td><code>content_tier_uuid</code></td><td><code>str | None</code></td><td><code>contentTierUuid</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>wallpaper</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
             <tr><td><code>chromas</code></td><td><code>list[WeaponChroma]</code></td><td>-</td></tr>
             <tr><td><code>levels</code></td><td><code>list[WeaponSkinLevel]</code></td><td>-</td></tr>
           </tbody>
@@ -3137,10 +3246,10 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
           <tbody>
             <tr><td><code>uuid</code></td><td><code>str</code></td><td>-</td></tr>
             <tr><td><code>display_name</code></td><td><code>str</code></td><td><code>displayName</code></td></tr>
-            <tr><td><code>level_item</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>level_item</code></td><td><code>str | None</code></td><td><code>levelItem</code></td></tr>
             <tr><td><code>display_icon</code></td><td><code>AssetUrl</code></td><td><code>displayIcon</code></td></tr>
             <tr><td><code>streamed_video</code></td><td><code>AssetUrl</code></td><td><code>streamedVideo</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-weaponchroma" data-anchor="weaponchroma"><code>WeaponChroma</code></h3>
@@ -3153,69 +3262,69 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
             <tr><td><code>full_render</code></td><td><code>AssetUrl</code></td><td><code>fullRender</code></td></tr>
             <tr><td><code>swatch</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
             <tr><td><code>streamed_video</code></td><td><code>AssetUrl</code></td><td><code>streamedVideo</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-damagerange" data-anchor="damagerange"><code>DamageRange</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>range_start_meters</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>range_end_meters</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>head_damage</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>body_damage</code></td><td>`float</td><td>int`</td></tr>
-            <tr><td><code>leg_damage</code></td><td>`float</td><td>int`</td></tr>
+            <tr><td><code>range_start_meters</code></td><td><code>float | int</code></td><td><code>rangeStartMeters</code></td></tr>
+            <tr><td><code>range_end_meters</code></td><td><code>float | int</code></td><td><code>rangeEndMeters</code></td></tr>
+            <tr><td><code>head_damage</code></td><td><code>float | int</code></td><td><code>headDamage</code></td></tr>
+            <tr><td><code>body_damage</code></td><td><code>float | int</code></td><td><code>bodyDamage</code></td></tr>
+            <tr><td><code>leg_damage</code></td><td><code>float | int</code></td><td><code>legDamage</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-adsstats" data-anchor="adsstats"><code>AdsStats</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>zoom_multiplier</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>fire_rate</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>run_speed_multiplier</code></td><td>`float</td><td>int</td></tr>
-            <tr><td><code>burst_count</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>first_bullet_accuracy</code></td><td>`float</td><td>int</td></tr>
+            <tr><td><code>zoom_multiplier</code></td><td><code>float | int | None</code></td><td><code>zoomMultiplier</code></td></tr>
+            <tr><td><code>fire_rate</code></td><td><code>float | int | None</code></td><td><code>fireRate</code></td></tr>
+            <tr><td><code>run_speed_multiplier</code></td><td><code>float | int | None</code></td><td><code>runSpeedMultiplier</code></td></tr>
+            <tr><td><code>burst_count</code></td><td><code>int | None</code></td><td><code>burstCount</code></td></tr>
+            <tr><td><code>first_bullet_accuracy</code></td><td><code>float | int | None</code></td><td><code>firstBulletAccuracy</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-altshotgunstats" data-anchor="altshotgunstats"><code>AltShotgunStats</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>shotgun_pellet_count</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>burst_rate</code></td><td>`float</td><td>int</td></tr>
+            <tr><td><code>shotgun_pellet_count</code></td><td><code>int | None</code></td><td><code>shotgunPelletCount</code></td></tr>
+            <tr><td><code>burst_rate</code></td><td><code>float | int | None</code></td><td><code>burstRate</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-airburststats" data-anchor="airburststats"><code>AirBurstStats</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>shotgun_pellet_count</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>burst_distance</code></td><td>`float</td><td>int</td></tr>
+            <tr><td><code>shotgun_pellet_count</code></td><td><code>int | None</code></td><td><code>shotgunPelletCount</code></td></tr>
+            <tr><td><code>burst_distance</code></td><td><code>float | int | None</code></td><td><code>burstDistance</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-shopdata" data-anchor="shopdata"><code>ShopData</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>cost</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>category</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>shop_order_priority</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>category_text</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>grid_position</code></td><td>`ShopGridPosition</td><td>None`</td></tr>
-            <tr><td><code>can_be_trashed</code></td><td>`bool</td><td>None`</td></tr>
+            <tr><td><code>cost</code></td><td><code>int | None</code></td><td>-</td></tr>
+            <tr><td><code>category</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>shop_order_priority</code></td><td><code>int | None</code></td><td><code>shopOrderPriority</code></td></tr>
+            <tr><td><code>category_text</code></td><td><code>str | None</code></td><td><code>categoryText</code></td></tr>
+            <tr><td><code>grid_position</code></td><td><code>ShopGridPosition | None</code></td><td><code>gridPosition</code></td></tr>
+            <tr><td><code>can_be_trashed</code></td><td><code>bool | None</code></td><td><code>canBeTrashed</code></td></tr>
             <tr><td><code>image</code></td><td><code>AssetUrl</code></td><td>-</td></tr>
             <tr><td><code>new_image</code></td><td><code>AssetUrl</code></td><td><code>newImage</code></td></tr>
             <tr><td><code>new_image_2</code></td><td><code>AssetUrl</code></td><td><code>newImage2</code></td></tr>
-            <tr><td><code>asset_path</code></td><td>`str</td><td>None`</td></tr>
+            <tr><td><code>asset_path</code></td><td><code>str | None</code></td><td><code>assetPath</code></td></tr>
           </tbody>
         </table>
         <h3 id="weapons-shopgridposition" data-anchor="shopgridposition"><code>ShopGridPosition</code></h3>
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>row</code></td><td>`int</td><td>None`</td></tr>
-            <tr><td><code>column</code></td><td>`int</td><td>None`</td></tr>
+            <tr><td><code>row</code></td><td><code>int | None</code></td><td>-</td></tr>
+            <tr><td><code>column</code></td><td><code>int | None</code></td><td>-</td></tr>
           </tbody>
         </table>
         <h2 id="weapons-notes-2" data-anchor="notes-2">Notes</h2>
@@ -3250,14 +3359,14 @@ weapons = api.<span class="fn">list_weapons</span>(language=<span class="cl">Lan
         <table>
           <thead><tr><th>Field</th><th>Type</th><th>API alias</th></tr></thead>
           <tbody>
-            <tr><td><code>manifest_id</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>branch</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>version</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>build_version</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>engine_version</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>riot_client_version</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>riot_client_build</code></td><td>`str</td><td>None`</td></tr>
-            <tr><td><code>build_date</code></td><td>`datetime</td><td>None`</td></tr>
+            <tr><td><code>manifest_id</code></td><td><code>str | None</code></td><td><code>manifestId</code></td></tr>
+            <tr><td><code>branch</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>version</code></td><td><code>str | None</code></td><td>-</td></tr>
+            <tr><td><code>build_version</code></td><td><code>str | None</code></td><td><code>buildVersion</code></td></tr>
+            <tr><td><code>engine_version</code></td><td><code>str | None</code></td><td><code>engineVersion</code></td></tr>
+            <tr><td><code>riot_client_version</code></td><td><code>str | None</code></td><td><code>riotClientVersion</code></td></tr>
+            <tr><td><code>riot_client_build</code></td><td><code>str | None</code></td><td><code>riotClientBuild</code></td></tr>
+            <tr><td><code>build_date</code></td><td><code>datetime | None</code></td><td><code>buildDate</code></td></tr>
           </tbody>
         </table>
         <h2 id="version-notes-2" data-anchor="notes-2">Notes</h2>

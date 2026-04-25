@@ -68,8 +68,8 @@ The client applies a 12 hour expiry override.
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `asset_object_name` | `str | None` | `assetObjectName` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_object_name` | `str \| None` | `assetObjectName` |
+| `asset_path` | `str \| None` | `assetPath` |
 | `tiers` | `Lazy[list[CompetitiveTier]]` | - |
 :::
 
@@ -82,8 +82,8 @@ The client applies a 12 hour expiry override.
 | `tier_name` | `str` | `tierName` |
 | `division` | `str` | - |
 | `division_name` | `str` | `divisionName` |
-| `color` | `str | None` | - |
-| `background_color` | `str | None` | `backgroundColor` |
+| `color` | `str \| None` | - |
+| `background_color` | `str \| None` | `backgroundColor` |
 | `small_icon` | `AssetUrl` | `smallIcon` |
 | `large_icon` | `AssetUrl` | `largeIcon` |
 | `rank_triangle_down_icon` | `AssetUrl` | `rankTriangleDownIcon` |

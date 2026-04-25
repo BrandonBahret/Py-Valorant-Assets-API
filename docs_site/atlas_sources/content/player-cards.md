@@ -62,13 +62,13 @@ get_player_card(card_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `is_hidden_if_not_owned` | `bool | None` | `isHiddenIfNotOwned` |
-| `theme_uuid` | `str | None` | `themeUuid` |
+| `is_hidden_if_not_owned` | `bool \| None` | `isHiddenIfNotOwned` |
+| `theme_uuid` | `str \| None` | `themeUuid` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `small_art` | `AssetUrl` | `smallArt` |
 | `wide_art` | `AssetUrl` | `wideArt` |
 | `large_art` | `AssetUrl` | `largeArt` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

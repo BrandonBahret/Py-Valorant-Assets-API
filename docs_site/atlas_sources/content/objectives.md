@@ -68,8 +68,8 @@ The client applies a 30 minute expiry override.
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `directive` | `str | None` | - |
-| `asset_path` | `str | None` | `assetPath` |
+| `directive` | `str \| None` | - |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

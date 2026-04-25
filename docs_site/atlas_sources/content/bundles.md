@@ -62,17 +62,17 @@ get_bundle(bundle_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `display_name_sub_text` | `str | None` | `displayNameSubText` |
-| `description` | `str | None` | - |
-| `extra_description` | `str | None` | `extraDescription` |
-| `promo_description` | `str | None` | `promoDescription` |
+| `display_name_sub_text` | `str \| None` | `displayNameSubText` |
+| `description` | `str \| None` | - |
+| `extra_description` | `str \| None` | `extraDescription` |
+| `promo_description` | `str \| None` | `promoDescription` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `display_icon_2` | `AssetUrl` | `displayIcon2` |
 | `display_icon_3` | `AssetUrl` | `displayIcon3` |
 | `vertical_promo_image` | `AssetUrl` | `verticalPromoImage` |
-| `use_additional_context` | `bool | None` | `useAdditionalContext` |
+| `use_additional_context` | `bool \| None` | `useAdditionalContext` |
 | `logo_icon` | `AssetUrl` | `logoIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

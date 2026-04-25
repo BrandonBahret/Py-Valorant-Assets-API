@@ -62,16 +62,16 @@ get_spray(spray_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `category` | `str | None` | - |
-| `theme_uuid` | `str | None` | `themeUuid` |
+| `category` | `str \| None` | - |
+| `theme_uuid` | `str \| None` | `themeUuid` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `full_icon` | `AssetUrl` | `fullIcon` |
 | `full_transparent_icon` | `AssetUrl` | `fullTransparentIcon` |
 | `animation_gif` | `AssetUrl` | `animationGif` |
 | `animation_png` | `AssetUrl` | `animationPng` |
-| `hide_if_not_owned` | `bool | None` | `hideIfNotOwned` |
-| `is_null_spray` | `bool | None` | `isNullSpray` |
-| `asset_path` | `str | None` | `assetPath` |
+| `hide_if_not_owned` | `bool \| None` | `hideIfNotOwned` |
+| `is_null_spray` | `bool \| None` | `isNullSpray` |
+| `asset_path` | `str \| None` | `assetPath` |
 | `levels` | `Lazy[list[SprayLevel]]` | - |
 :::
 
@@ -81,10 +81,10 @@ get_spray(spray_uuid: str, *, language: LanguageLike = None)
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `spray_level` | `int | None` | `sprayLevel` |
+| `spray_level` | `int \| None` | `sprayLevel` |
 | `display_name` | `str` | `displayName` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

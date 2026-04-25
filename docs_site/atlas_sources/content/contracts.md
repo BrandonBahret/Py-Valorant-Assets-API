@@ -88,12 +88,12 @@ This helper returns `ContractLevel` items rather than a top-level exported model
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `ship_it` | `bool | None` | `shipIt` |
-| `use_level_vp_cost_override` | `bool | None` | `useLevelVPCostOverride` |
-| `level_vp_cost_override` | `int | None` | `levelVPCostOverride` |
-| `free_reward_schedule_uuid` | `str | None` | `freeRewardScheduleUuid` |
+| `ship_it` | `bool \| None` | `shipIt` |
+| `use_level_vp_cost_override` | `bool \| None` | `useLevelVPCostOverride` |
+| `level_vp_cost_override` | `int \| None` | `levelVPCostOverride` |
+| `free_reward_schedule_uuid` | `str \| None` | `freeRewardScheduleUuid` |
 | `content` | `Lazy[ContractContent]` | - |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `ContractContent`
@@ -101,11 +101,11 @@ This helper returns `ContractLevel` items rather than a top-level exported model
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `relation_type` | `str | None` | `relationType` |
-| `relation_uuid` | `str | None` | `relationUuid` |
+| `relation_type` | `str \| None` | `relationType` |
+| `relation_uuid` | `str \| None` | `relationUuid` |
 | `chapters` | `Lazy[list[ContractChapter]]` | - |
-| `premium_reward_schedule_uuid` | `str | None` | `premiumRewardScheduleUuid` |
-| `premium_vp_cost` | `int | None` | `premiumVPCost` |
+| `premium_reward_schedule_uuid` | `str \| None` | `premiumRewardScheduleUuid` |
+| `premium_vp_cost` | `int \| None` | `premiumVPCost` |
 :::
 
 ### `ContractChapter`
@@ -115,7 +115,7 @@ This helper returns `ContractLevel` items rather than a top-level exported model
 |-------|------|-----------|
 | `is_epilogue` | `bool` | `isEpilogue` |
 | `levels` | `list[ContractLevel]` | - |
-| `free_rewards` | `list[Reward] | None` | `freeRewards` |
+| `free_rewards` | `list[Reward] \| None` | `freeRewards` |
 :::
 
 ### `ContractLevel`
@@ -123,12 +123,12 @@ This helper returns `ContractLevel` items rather than a top-level exported model
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `reward` | `Reward | None` | - |
+| `reward` | `Reward \| None` | - |
 | `xp` | `int` | - |
-| `vp_cost` | `int | None` | `vpCost` |
-| `is_purchasable_with_vp` | `bool | None` | `isPurchasableWithVP` |
-| `dough_cost` | `int | None` | `doughCost` |
-| `is_purchasable_with_dough` | `bool | None` | `isPurchasableWithDough` |
+| `vp_cost` | `int \| None` | `vpCost` |
+| `is_purchasable_with_vp` | `bool \| None` | `isPurchasableWithVP` |
+| `dough_cost` | `int \| None` | `doughCost` |
+| `is_purchasable_with_dough` | `bool \| None` | `isPurchasableWithDough` |
 :::
 
 ### `Reward`

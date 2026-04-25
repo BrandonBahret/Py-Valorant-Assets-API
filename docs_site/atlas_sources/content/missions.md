@@ -68,16 +68,16 @@ The client applies a 30 minute expiry override.
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `display_name` | `str | None` | `displayName` |
-| `title` | `str | None` | - |
-| `type` | `MissionType | str | None` | - |
-| `xp_grant` | `int | None` | `xpGrant` |
-| `progress_to_complete` | `int | None` | `progressToComplete` |
-| `activation_date` | `datetime | None` | `activationDate` |
-| `expiration_date` | `datetime | None` | `expirationDate` |
-| `tags` | `list[str] | None` | - |
-| `objectives` | `list[MissionObjectiveProgress] | None` | - |
-| `asset_path` | `str | None` | `assetPath` |
+| `display_name` | `str \| None` | `displayName` |
+| `title` | `str \| None` | - |
+| `type` | `MissionType \| str \| None` | - |
+| `xp_grant` | `int \| None` | `xpGrant` |
+| `progress_to_complete` | `int \| None` | `progressToComplete` |
+| `activation_date` | `datetime \| None` | `activationDate` |
+| `expiration_date` | `datetime \| None` | `expirationDate` |
+| `tags` | `list[str] \| None` | - |
+| `objectives` | `list[MissionObjectiveProgress] \| None` | - |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `MissionObjectiveProgress`

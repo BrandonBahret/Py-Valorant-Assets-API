@@ -62,13 +62,13 @@ get_content_tier(content_tier_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `dev_name` | `str | None` | `devName` |
-| `rank` | `int | None` | - |
-| `juice_value` | `int | None` | `juiceValue` |
-| `juice_cost` | `int | None` | `juiceCost` |
-| `highlight_color` | `str | None` | `highlightColor` |
+| `dev_name` | `str \| None` | `devName` |
+| `rank` | `int \| None` | - |
+| `juice_value` | `int \| None` | `juiceValue` |
+| `juice_cost` | `int \| None` | `juiceCost` |
+| `highlight_color` | `str \| None` | `highlightColor` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

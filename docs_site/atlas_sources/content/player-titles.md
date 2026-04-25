@@ -61,10 +61,10 @@ get_player_title(title_uuid: str, *, language: LanguageLike = None)
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `display_name` | `str | None` | `displayName` |
-| `title_text` | `str | None` | `titleText` |
-| `is_hidden_if_not_owned` | `bool | None` | `isHiddenIfNotOwned` |
-| `asset_path` | `str | None` | `assetPath` |
+| `display_name` | `str \| None` | `displayName` |
+| `title_text` | `str \| None` | `titleText` |
+| `is_hidden_if_not_owned` | `bool \| None` | `isHiddenIfNotOwned` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

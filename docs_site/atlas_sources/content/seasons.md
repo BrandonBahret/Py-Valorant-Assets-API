@@ -69,7 +69,7 @@ get_current_season(*, language: LanguageLike = None, now: datetime | None = None
 | Parameter | Type | Default | Required | Description |
 |-----------|------|---------|----------|-------------|
 | `language` | `LanguageLike` | `None` | no | Localization code for endpoints that expose translated content. |
-| `now` | `datetime | None` | `None` | no | Optional UTC timestamp used instead of the current time. |
+| `now` | `datetime \| None` | `None` | no | Optional UTC timestamp used instead of the current time. |
 :::
 
 #### Notes
@@ -87,12 +87,12 @@ The helper compares season windows against `now` or the current UTC time and ret
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `title` | `str | None` | - |
-| `type` | `str | None` | - |
-| `parent_uuid` | `str | None` | `parentUuid` |
-| `start_time` | `datetime | None` | `startTime` |
-| `end_time` | `datetime | None` | `endTime` |
-| `asset_path` | `str | None` | `assetPath` |
+| `title` | `str \| None` | - |
+| `type` | `str \| None` | - |
+| `parent_uuid` | `str \| None` | `parentUuid` |
+| `start_time` | `datetime \| None` | `startTime` |
+| `end_time` | `datetime \| None` | `endTime` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

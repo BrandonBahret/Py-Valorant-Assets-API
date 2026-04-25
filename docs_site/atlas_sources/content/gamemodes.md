@@ -62,20 +62,20 @@ get_gamemode(gamemode_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `description` | `str | None` | - |
-| `duration` | `str | None` | - |
+| `description` | `str \| None` | - |
+| `duration` | `str \| None` | - |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
-| `team_roles` | `list[str] | None` | `teamRoles` |
-| `game_feature_overrides` | `list[GameFeatureOverride] | None` | `gameFeatureOverrides` |
-| `game_rule_bool_overrides` | `list[GameRuleBoolOverride] | None` | `gameRuleBoolOverrides` |
-| `allows_match_timeouts` | `bool | None` | `allowsMatchTimeouts` |
-| `allows_custom_game_replays` | `bool | None` | `allowsCustomGameReplays` |
-| `is_minimap_hidden` | `bool | None` | `isMinimapHidden` |
-| `is_team_voice_allowed` | `bool | None` | `isTeamVoiceAllowed` |
-| `orb_count` | `int | None` | `orbCount` |
-| `rounds_per_half` | `int | None` | `roundsPerHalf` |
-| `economy_type` | `str | None` | `economyType` |
+| `asset_path` | `str \| None` | `assetPath` |
+| `team_roles` | `list[str] \| None` | `teamRoles` |
+| `game_feature_overrides` | `list[GameFeatureOverride] \| None` | `gameFeatureOverrides` |
+| `game_rule_bool_overrides` | `list[GameRuleBoolOverride] \| None` | `gameRuleBoolOverrides` |
+| `allows_match_timeouts` | `bool \| None` | `allowsMatchTimeouts` |
+| `allows_custom_game_replays` | `bool \| None` | `allowsCustomGameReplays` |
+| `is_minimap_hidden` | `bool \| None` | `isMinimapHidden` |
+| `is_team_voice_allowed` | `bool \| None` | `isTeamVoiceAllowed` |
+| `orb_count` | `int \| None` | `orbCount` |
+| `rounds_per_half` | `int \| None` | `roundsPerHalf` |
+| `economy_type` | `str \| None` | `economyType` |
 | `list_view_icon_tall` | `AssetUrl` | `listViewIconTall` |
 :::
 

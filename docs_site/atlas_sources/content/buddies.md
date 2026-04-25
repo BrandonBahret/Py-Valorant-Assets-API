@@ -62,10 +62,10 @@ get_buddy(buddy_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `is_hidden_if_not_owned` | `bool | None` | `isHiddenIfNotOwned` |
-| `theme_uuid` | `str | None` | `themeUuid` |
+| `is_hidden_if_not_owned` | `bool \| None` | `isHiddenIfNotOwned` |
+| `theme_uuid` | `str \| None` | `themeUuid` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 | `levels` | `Lazy[list[BuddyLevel]]` | - |
 :::
 
@@ -75,11 +75,11 @@ get_buddy(buddy_uuid: str, *, language: LanguageLike = None)
 | Field | Type | API alias |
 |-------|------|-----------|
 | `uuid` | `str` | - |
-| `charm_level` | `int | None` | `charmLevel` |
-| `hide_if_not_owned` | `bool | None` | `hideIfNotOwned` |
+| `charm_level` | `int \| None` | `charmLevel` |
+| `hide_if_not_owned` | `bool \| None` | `hideIfNotOwned` |
 | `display_name` | `str` | `displayName` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

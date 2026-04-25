@@ -87,13 +87,13 @@ The helper matches exact case-insensitive names before substring matches.
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `category` | `WeaponCategory | str | None` | - |
-| `default_skin_uuid` | `str | None` | `defaultSkinUuid` |
+| `category` | `WeaponCategory \| str \| None` | - |
+| `default_skin_uuid` | `str \| None` | `defaultSkinUuid` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `kill_stream_icon` | `AssetUrl` | `killStreamIcon` |
-| `asset_path` | `str | None` | `assetPath` |
-| `weapon_stats` | `WeaponStats | None` | `weaponStats` |
-| `shop_data` | `ShopData | None` | `shopData` |
+| `asset_path` | `str \| None` | `assetPath` |
+| `weapon_stats` | `WeaponStats \| None` | `weaponStats` |
+| `shop_data` | `ShopData \| None` | `shopData` |
 | `skins` | `Lazy[list[WeaponSkin]]` | - |
 :::
 
@@ -102,21 +102,21 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `fire_rate` | `float | int | None` | `fireRate` |
-| `magazine_size` | `int | None` | `magazineSize` |
-| `run_speed_multiplier` | `float | int | None` | `runSpeedMultiplier` |
-| `equip_time_seconds` | `float | int | None` | `equipTimeSeconds` |
-| `reload_time_seconds` | `float | int | None` | `reloadTimeSeconds` |
-| `first_bullet_accuracy` | `float | int | None` | `firstBulletAccuracy` |
-| `shotgun_pellet_count` | `int | None` | `shotgunPelletCount` |
-| `wall_penetration` | `WallPenetration | str | None` | `wallPenetration` |
-| `feature` | `WeaponStatsFeature | str | None` | - |
-| `fire_mode` | `str | None` | `fireMode` |
-| `alt_fire_type` | `AltFireType | str | None` | `altFireType` |
-| `ads_stats` | `AdsStats | None` | `adsStats` |
-| `alt_shotgun_stats` | `AltShotgunStats | None` | `altShotgunStats` |
-| `air_burst_stats` | `AirBurstStats | None` | `airBurstStats` |
-| `damage_ranges` | `list[DamageRange] | None` | `damageRanges` |
+| `fire_rate` | `float \| int \| None` | `fireRate` |
+| `magazine_size` | `int \| None` | `magazineSize` |
+| `run_speed_multiplier` | `float \| int \| None` | `runSpeedMultiplier` |
+| `equip_time_seconds` | `float \| int \| None` | `equipTimeSeconds` |
+| `reload_time_seconds` | `float \| int \| None` | `reloadTimeSeconds` |
+| `first_bullet_accuracy` | `float \| int \| None` | `firstBulletAccuracy` |
+| `shotgun_pellet_count` | `int \| None` | `shotgunPelletCount` |
+| `wall_penetration` | `WallPenetration \| str \| None` | `wallPenetration` |
+| `feature` | `WeaponStatsFeature \| str \| None` | - |
+| `fire_mode` | `str \| None` | `fireMode` |
+| `alt_fire_type` | `AltFireType \| str \| None` | `altFireType` |
+| `ads_stats` | `AdsStats \| None` | `adsStats` |
+| `alt_shotgun_stats` | `AltShotgunStats \| None` | `altShotgunStats` |
+| `air_burst_stats` | `AirBurstStats \| None` | `airBurstStats` |
+| `damage_ranges` | `list[DamageRange] \| None` | `damageRanges` |
 :::
 
 ### `WeaponSkin`
@@ -126,11 +126,11 @@ The helper matches exact case-insensitive names before substring matches.
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `theme_uuid` | `str | None` | `themeUuid` |
-| `content_tier_uuid` | `str | None` | `contentTierUuid` |
+| `theme_uuid` | `str \| None` | `themeUuid` |
+| `content_tier_uuid` | `str \| None` | `contentTierUuid` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `wallpaper` | `AssetUrl` | - |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 | `chromas` | `list[WeaponChroma]` | - |
 | `levels` | `list[WeaponSkinLevel]` | - |
 :::
@@ -142,10 +142,10 @@ The helper matches exact case-insensitive names before substring matches.
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `level_item` | `str | None` | `levelItem` |
+| `level_item` | `str \| None` | `levelItem` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `streamed_video` | `AssetUrl` | `streamedVideo` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `WeaponChroma`
@@ -159,7 +159,7 @@ The helper matches exact case-insensitive names before substring matches.
 | `full_render` | `AssetUrl` | `fullRender` |
 | `swatch` | `AssetUrl` | - |
 | `streamed_video` | `AssetUrl` | `streamedVideo` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `DamageRange`
@@ -167,11 +167,11 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `range_start_meters` | `float | int` | `rangeStartMeters` |
-| `range_end_meters` | `float | int` | `rangeEndMeters` |
-| `head_damage` | `float | int` | `headDamage` |
-| `body_damage` | `float | int` | `bodyDamage` |
-| `leg_damage` | `float | int` | `legDamage` |
+| `range_start_meters` | `float \| int` | `rangeStartMeters` |
+| `range_end_meters` | `float \| int` | `rangeEndMeters` |
+| `head_damage` | `float \| int` | `headDamage` |
+| `body_damage` | `float \| int` | `bodyDamage` |
+| `leg_damage` | `float \| int` | `legDamage` |
 :::
 
 ### `AdsStats`
@@ -179,11 +179,11 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `zoom_multiplier` | `float | int | None` | `zoomMultiplier` |
-| `fire_rate` | `float | int | None` | `fireRate` |
-| `run_speed_multiplier` | `float | int | None` | `runSpeedMultiplier` |
-| `burst_count` | `int | None` | `burstCount` |
-| `first_bullet_accuracy` | `float | int | None` | `firstBulletAccuracy` |
+| `zoom_multiplier` | `float \| int \| None` | `zoomMultiplier` |
+| `fire_rate` | `float \| int \| None` | `fireRate` |
+| `run_speed_multiplier` | `float \| int \| None` | `runSpeedMultiplier` |
+| `burst_count` | `int \| None` | `burstCount` |
+| `first_bullet_accuracy` | `float \| int \| None` | `firstBulletAccuracy` |
 :::
 
 ### `AltShotgunStats`
@@ -191,8 +191,8 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `shotgun_pellet_count` | `int | None` | `shotgunPelletCount` |
-| `burst_rate` | `float | int | None` | `burstRate` |
+| `shotgun_pellet_count` | `int \| None` | `shotgunPelletCount` |
+| `burst_rate` | `float \| int \| None` | `burstRate` |
 :::
 
 ### `AirBurstStats`
@@ -200,8 +200,8 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `shotgun_pellet_count` | `int | None` | `shotgunPelletCount` |
-| `burst_distance` | `float | int | None` | `burstDistance` |
+| `shotgun_pellet_count` | `int \| None` | `shotgunPelletCount` |
+| `burst_distance` | `float \| int \| None` | `burstDistance` |
 :::
 
 ### `ShopData`
@@ -209,16 +209,16 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `cost` | `int | None` | - |
-| `category` | `str | None` | - |
-| `shop_order_priority` | `int | None` | `shopOrderPriority` |
-| `category_text` | `str | None` | `categoryText` |
-| `grid_position` | `ShopGridPosition | None` | `gridPosition` |
-| `can_be_trashed` | `bool | None` | `canBeTrashed` |
+| `cost` | `int \| None` | - |
+| `category` | `str \| None` | - |
+| `shop_order_priority` | `int \| None` | `shopOrderPriority` |
+| `category_text` | `str \| None` | `categoryText` |
+| `grid_position` | `ShopGridPosition \| None` | `gridPosition` |
+| `can_be_trashed` | `bool \| None` | `canBeTrashed` |
 | `image` | `AssetUrl` | - |
 | `new_image` | `AssetUrl` | `newImage` |
 | `new_image_2` | `AssetUrl` | `newImage2` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ### `ShopGridPosition`
@@ -226,8 +226,8 @@ The helper matches exact case-insensitive names before substring matches.
 :::table
 | Field | Type | API alias |
 |-------|------|-----------|
-| `row` | `int | None` | - |
-| `column` | `int | None` | - |
+| `row` | `int \| None` | - |
+| `column` | `int \| None` | - |
 :::
 
 ## Notes

@@ -62,11 +62,11 @@ get_currency(currency_uuid: str, *, language: LanguageLike = None)
 |-------|------|-----------|
 | `uuid` | `str` | - |
 | `display_name` | `str` | `displayName` |
-| `display_name_singular` | `str | None` | `displayNameSingular` |
+| `display_name_singular` | `str \| None` | `displayNameSingular` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `large_icon` | `AssetUrl` | `largeIcon` |
 | `reward_preview_icon` | `AssetUrl` | `rewardPreviewIcon` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

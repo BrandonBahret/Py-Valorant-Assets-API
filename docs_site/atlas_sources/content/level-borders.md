@@ -64,9 +64,9 @@ get_level_border(level_border_uuid: str, *, language: LanguageLike = None)
 | `display_name` | `str` | `displayName` |
 | `starting_level` | `int` | `startingLevel` |
 | `level_number` | `int` | `levelNumber` |
-| `level_number_appearance` | `str | None` | `levelNumberAppearance` |
-| `small_player_card_appearance` | `str | None` | `smallPlayerCardAppearance` |
-| `asset_path` | `str | None` | `assetPath` |
+| `level_number_appearance` | `str \| None` | `levelNumberAppearance` |
+| `small_player_card_appearance` | `str \| None` | `smallPlayerCardAppearance` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes

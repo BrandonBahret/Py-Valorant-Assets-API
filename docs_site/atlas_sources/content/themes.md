@@ -64,7 +64,7 @@ get_theme(theme_uuid: str, *, language: LanguageLike = None)
 | `display_name` | `str` | `displayName` |
 | `display_icon` | `AssetUrl` | `displayIcon` |
 | `store_featured_image` | `AssetUrl` | `storeFeaturedImage` |
-| `asset_path` | `str | None` | `assetPath` |
+| `asset_path` | `str \| None` | `assetPath` |
 :::
 
 ## Notes
