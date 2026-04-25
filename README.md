@@ -1,59 +1,15 @@
 # Valorant Assets API
 
-Typed Python wrapper for the public [Valorant API](https://dash.valorant-api.com/) built on `pypercache`.
-
-Read the [docs](https://brandonbahret.github.io/Py-Valorant-Assets-API/docs_site/index.html)
-
-```python
-from valorant_assets_api import ValorantAPI
-
-api = ValorantAPI()
-
-for agent in api.list_agents(playable_only=True):
-    print(agent.display_name, "-", agent.role.display_name if agent.role else "No role")
-
-current_season = api.get_current_season()
-version = api.get_version()
-```
+A typed Python wrapper for the public [Valorant API](https://dash.valorant-api.com/), built on `pypercache`.
 
 ## Features
 
-- Typed `@apimodel` resources for the main `/v1` endpoints
+- Typed `@apimodel` schema resources for the main `/v1` endpoints
 - Built-in response caching via `pypercache`
-- Optional request logging
 - UUID lookups and collection methods
 - Convenience helpers for playable agents, name-based lookup, active events, current season, and flattened contract rewards
-
-## Endpoint Coverage Matrix
-
-`list_*` and `get_*` methods map directly to public `/v1` endpoints. Helper methods compose those endpoint calls into higher-level lookups.
-
-| Endpoint | Collection | Detail | Helpers | `language` support | Notes |
-| --- | --- | --- | --- | --- | --- |
-| `/agents` | `list_agents()` | `get_agent()` | `find_agent()` | Yes | `list_agents(playable_only=True)` adds `isPlayableCharacter=True` |
-| `/buddies` | `list_buddies()` | `get_buddy()` | - | Yes | Direct endpoint coverage |
-| `/bundles` | `list_bundles()` | `get_bundle()` | - | Yes | Direct endpoint coverage |
-| `/ceremonies` | `list_ceremonies()` | `get_ceremony()` | - | No | Direct endpoint coverage |
-| `/competitivetiers` | `list_competitive_tiers()` | `get_competitive_tier_set()` | - | No | Direct endpoint coverage |
-| `/contenttiers` | `list_content_tiers()` | `get_content_tier()` | - | Yes | Direct endpoint coverage |
-| `/contracts` | `list_contracts()` | `get_contract()` | `list_contract_rewards()` | Yes | Rewards helper flattens chapter levels from one contract |
-| `/currencies` | `list_currencies()` | `get_currency()` | - | Yes | Direct endpoint coverage |
-| `/events` | `list_events()` | `get_event()` | `get_active_events()` | Yes | Active-events helper filters by `start_time` and `end_time` |
-| `/gamemodes` | `list_gamemodes()` | `get_gamemode()` | - | Yes | Direct endpoint coverage |
-| `/gear` | `list_gear()` | `get_gear()` | - | Yes | Direct endpoint coverage |
-| `/levelborders` | `list_level_borders()` | `get_level_border()` | - | Yes | Direct endpoint coverage |
-| `/maps` | `list_maps()` | `get_map()` | `find_map()` | Yes | Name helper matches exact name first, then partial match |
-| `/missions` | `list_missions()` | `get_mission()` | - | No | Direct endpoint coverage |
-| `/objectives` | `list_objectives()` | `get_objective()` | - | No | Direct endpoint coverage |
-| `/playercards` | `list_player_cards()` | `get_player_card()` | - | Yes | Direct endpoint coverage |
-| `/playertitles` | `list_player_titles()` | `get_player_title()` | - | Yes | Direct endpoint coverage |
-| `/seasons` | `list_seasons()` | `get_season()` | `get_current_season()` | Yes | Current-season helper selects the active season for a given time |
-| `/sprays` | `list_sprays()` | `get_spray()` | - | Yes | Direct endpoint coverage |
-| `/themes` | `list_themes()` | `get_theme()` | - | Yes | Direct endpoint coverage |
-| `/weapons` | `list_weapons()` | `get_weapon()` | `find_weapon()` | Yes | Name helper matches exact name first, then partial match |
-| `/version` | - | `get_version()` | - | No | Detail-style singleton endpoint |
-
-The live cache hydration tests in `tests/test_live_endpoints.py` exercise every direct `list_*`/`get_*` mapping above, plus `find_agent()`, `find_map()`, `find_weapon()`, `list_contract_rewards()`, `get_active_events()`, `get_current_season()`, and `get_version()`.
+- Convenience helpers for downloading assets and finding their path on disk
+- Optional request logging
 
 ## Install
 
@@ -67,20 +23,51 @@ For local development:
 pip install -e .[test]
 ```
 
-## Tutorial Notebook
+## Usage
 
-See [notebooks/valorant_assets_api_tutorial.ipynb](notebooks/valorant_assets_api_tutorial.ipynb) for a step-by-step walkthrough of the client API, including setup, localization, UUID lookups, convenience helpers, and cache configuration.
+```python
+from valorant_assets_api import ValorantAPI
 
-## Documentation
+api = ValorantAPI()
 
-For the Markdown docs reader path, start at [docs/index.md](docs/index.md).
+for agent in api.list_agents(playable_only=True):
+    print(agent.display_name, "-", agent.role.display_name if agent.role else "No role")
 
-Use the docs for onboarding, usage patterns, and generated reference pages. Use the notebook when you want a guided, interactive walkthrough instead of quick lookup.
+current_season = api.get_current_season()
+version = api.get_version()
+```
 
-## Release Checklist
+## Documentation & Tutorial
 
-- Add a real `LICENSE` file and declare the matching `project.license` / `project.license-files` metadata in `pyproject.toml`
-- Add `authors` and/or `maintainers` metadata
-- Add `[project.urls]` for homepage, repository, issues, and documentation
-- Build distributions with `python -m build`
-- Validate package metadata and README rendering with `python -m twine check dist/*`
+Read the [docs](https://brandonbahret.github.io/Py-Valorant-Assets-API/docs_site/index.html) online, or start at [docs/index.md](docs/index.md) for the Markdown version.
+
+For a step-by-step walkthrough covering setup, localization, UUID lookups, convenience helpers, and cache configuration, see the [tutorial notebook](notebooks/valorant_assets_api_tutorial.ipynb).
+
+## Endpoint Coverage
+
+`list_*` and `get_*` methods map directly to public `/v1` endpoints. Helper methods compose those calls into higher-level lookups.
+
+| Endpoint | Collection | Detail | Helpers |
+| --- | --- | --- | --- |
+| `/agents` | `list_agents()` | `get_agent()` | `find_agent()` |
+| `/buddies` | `list_buddies()` | `get_buddy()` | - |
+| `/bundles` | `list_bundles()` | `get_bundle()` | - |
+| `/ceremonies` | `list_ceremonies()` | `get_ceremony()` | - |
+| `/competitivetiers` | `list_competitive_tiers()` | `get_competitive_tier_set()` | - |
+| `/contenttiers` | `list_content_tiers()` | `get_content_tier()` | - |
+| `/contracts` | `list_contracts()` | `get_contract()` | `list_contract_rewards()` |
+| `/currencies` | `list_currencies()` | `get_currency()` | - |
+| `/events` | `list_events()` | `get_event()` | `get_active_events()` |
+| `/gamemodes` | `list_gamemodes()` | `get_gamemode()` | - |
+| `/gear` | `list_gear()` | `get_gear()` | - |
+| `/levelborders` | `list_level_borders()` | `get_level_border()` | - |
+| `/maps` | `list_maps()` | `get_map()` | `find_map()` |
+| `/missions` | `list_missions()` | `get_mission()` | - |
+| `/objectives` | `list_objectives()` | `get_objective()` | - |
+| `/playercards` | `list_player_cards()` | `get_player_card()` | - |
+| `/playertitles` | `list_player_titles()` | `get_player_title()` | - |
+| `/seasons` | `list_seasons()` | `get_season()` | `get_current_season()` |
+| `/sprays` | `list_sprays()` | `get_spray()` | - |
+| `/themes` | `list_themes()` | `get_theme()` | - |
+| `/weapons` | `list_weapons()` | `get_weapon()` | `find_weapon()` |
+| `/version` | - | `get_version()` | - |

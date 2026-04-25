@@ -42,5 +42,5 @@ include = ["valorant_assets_api*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 markers = [
-    "live: exercises the live Valorant API and persisted cache hydration",
+    "live: exercises the Valorant Assets API and persisted cache hydration",
 ]
