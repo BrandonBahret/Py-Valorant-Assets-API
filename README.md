@@ -1,6 +1,6 @@
 # Valorant Assets API
 
-A typed Python wrapper for the public [Valorant API](https://dash.valorant-api.com/), built on `pypercache`.
+A typed Python wrapper for the public [Valorant API](https://dash.valorant-api.com/), built on [`pypercache`](https://github.com/BrandonBahret/PyperCache).
 
 ## Features
 
