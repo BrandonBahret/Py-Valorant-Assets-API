@@ -23,6 +23,10 @@ dist/
 .coverage.*
 htmlcov/
 pip-wheel-metadata/
+notebooks/assets/
+notebooks/cache/
+notebooks/valorant-api.log
+
 
 # Jupyter
 .ipynb_checkpoints/
