@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Annotated, Any
 from typing import TypeAlias
 
-from pypercache.models.apimodel import Alias, Lazy, Timestamp, apimodel
+from pypercache.models.apimodel import Alias, Lazy, Shallow, Timestamp, apimodel
 
 from .assets import CachedMediaAsset, get_asset_context
 from .enums import AltFireType, MissionType, WallPenetration, WeaponCategory, WeaponStatsFeature
@@ -199,7 +199,7 @@ class BuddyLevel:
     asset_path: Annotated[str | None, Alias("assetPath")]
 
 
-@apimodel
+@apimodel(validate=True)
 class Buddy:
     uuid: str
     display_name: Annotated[str, Alias("displayName")]
@@ -207,7 +207,7 @@ class Buddy:
     theme_uuid: Annotated[str | None, Alias("themeUuid")]
     display_icon: Annotated[AssetUrl, Alias("displayIcon")]
     asset_path: Annotated[str | None, Alias("assetPath")]
-    levels: Lazy[list[BuddyLevel]]
+    levels: Lazy[Annotated[list[BuddyLevel], Shallow()]]
 
 
 @apimodel(validate=True)
@@ -248,12 +248,12 @@ class CompetitiveTier:
     rank_triangle_up_icon: Annotated[AssetUrl, Alias("rankTriangleUpIcon")]
 
 
-@apimodel
+@apimodel(validate=True)
 class CompetitiveTierSet:
     uuid: str
     asset_object_name: Annotated[str | None, Alias("assetObjectName")]
     asset_path: Annotated[str | None, Alias("assetPath")]
-    tiers: Lazy[list[CompetitiveTier]]
+    tiers: Lazy[Annotated[list[CompetitiveTier], Shallow()]]
 
 
 @apimodel(validate=True)
@@ -297,16 +297,16 @@ class ContractChapter:
     free_rewards: Annotated[list[Reward] | None, Alias("freeRewards")]
 
 
-@apimodel
+@apimodel(validate=True)
 class ContractContent:
     relation_type: Annotated[str | None, Alias("relationType")]
     relation_uuid: Annotated[str | None, Alias("relationUuid")]
-    chapters: Lazy[list[ContractChapter]]
+    chapters: Lazy[Annotated[list[ContractChapter], Shallow()]]
     premium_reward_schedule_uuid: Annotated[str | None, Alias("premiumRewardScheduleUuid")]
     premium_vp_cost: Annotated[int | None, Alias("premiumVPCost")]
 
 
-@apimodel
+@apimodel(validate=True)
 class Contract:
     uuid: str
     display_name: Annotated[str, Alias("displayName")]
@@ -315,7 +315,7 @@ class Contract:
     use_level_vp_cost_override: Annotated[bool | None, Alias("useLevelVPCostOverride")]
     level_vp_cost_override: Annotated[int | None, Alias("levelVPCostOverride")]
     free_reward_schedule_uuid: Annotated[str | None, Alias("freeRewardScheduleUuid")]
-    content: Lazy[ContractContent]
+    content: Lazy[Annotated[ContractContent, Shallow()]]
     asset_path: Annotated[str | None, Alias("assetPath")]
 
     def __post_init__(self) -> None:
@@ -454,7 +454,7 @@ class Callout:
         self.rotation = _coerce_model(self.rotation, Rotation3D)
 
 
-@apimodel
+@apimodel(validate=True)
 class MapInfo:
     uuid: str
     display_name: Annotated[str, Alias("displayName")]
@@ -473,7 +473,7 @@ class MapInfo:
     y_multiplier: Annotated[Numeric, Alias("yMultiplier")]
     x_scalar_to_add: Annotated[Numeric, Alias("xScalarToAdd")]
     y_scalar_to_add: Annotated[Numeric, Alias("yScalarToAdd")]
-    callouts: Lazy[list[Callout] | None] | None
+    callouts: Lazy[Annotated[list[Callout] | None, Shallow()]] | None
 
     def __post_init__(self) -> None:
         self.callouts = _coerce_model_list(self.callouts, Callout)
@@ -565,7 +565,7 @@ class SprayLevel:
     asset_path: Annotated[str | None, Alias("assetPath")]
 
 
-@apimodel
+@apimodel(validate=True)
 class Spray:
     uuid: str
     display_name: Annotated[str, Alias("displayName")]
@@ -579,7 +579,7 @@ class Spray:
     hide_if_not_owned: Annotated[bool | None, Alias("hideIfNotOwned")]
     is_null_spray: Annotated[bool | None, Alias("isNullSpray")]
     asset_path: Annotated[str | None, Alias("assetPath")]
-    levels: Lazy[list[SprayLevel]]
+    levels: Lazy[Annotated[list[SprayLevel], Shallow()]]
 
 
 @apimodel(validate=True)
@@ -687,7 +687,7 @@ class WeaponSkin:
         self.levels = _coerce_model_list(self.levels, WeaponSkinLevel) or []
 
 
-@apimodel
+@apimodel(validate=True)
 class Weapon:
     uuid: str
     display_name: Annotated[str, Alias("displayName")]
@@ -698,7 +698,7 @@ class Weapon:
     asset_path: Annotated[str | None, Alias("assetPath")]
     weapon_stats: Annotated[WeaponStats | None, Alias("weaponStats")]
     shop_data: Annotated[ShopData | None, Alias("shopData")]
-    skins: Lazy[list[WeaponSkin]]
+    skins: Lazy[Annotated[list[WeaponSkin], Shallow()]]
 
     def __post_init__(self) -> None:
         self.category = _coerce_enum(self.category, WeaponCategory)
