@@ -44,7 +44,7 @@ DEFAULT_EXPIRY_SECONDS = 60 * 60 * 24
 DEFAULT_CACHE_PATH = str(Path(gettempdir()) / "valorant-api-wrapper" / "valorant-api.db")
 DEFAULT_REQUEST_LOG_PATH: str | None = None
 DEFAULT_DOWNLOAD_DIRECTORY: str | None = None
-USER_AGENT = "valorant-api-wrapper/0.1.1"
+USER_AGENT = "valorant-api-wrapper/0.1.2"
 
 T = TypeVar("T")
 LanguageLike = Language | str | None

@@ -1,6 +1,6 @@
 ---
 name: valorant-assets-api
-version: 0.1.1
+version: 0.1.2
 tagline: Typed pypercache-based wrapper for the public Valorant API.
 accent: "#ff4655"
 accent_dark: "#ff4655"

@@ -1,6 +1,6 @@
 [project]
 name = "valorant-assets-api"
-version = "0.1.1"
+version = "0.1.2"
 description = "Typed pypercache-based wrapper for the public Valorant API."
 readme = "README.md"
 requires-python = ">=3.11"
